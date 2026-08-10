@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,18 +14,13 @@ public class AntController : MonoBehaviour
         DROPPING_SUGAR   
     }
     public AntStates antCurrentState;
+    public TextMeshPro stateText;
     public Transform target;
     public Transform nestTarget;
     public NavMeshAgent agent;
     public float distanceToGrab = .1f;
 
-    IEnumerator Start()
-    {
-        yield return new WaitForSeconds(1);
-        antCurrentState = AntStates.TO_SUGAR;
-        yield break;
-
-    }
+    
 
     void Update()
     {
@@ -52,9 +48,15 @@ public class AntController : MonoBehaviour
                 target.SetParent(null);
                 antCurrentState = AntStates.WAITING;
                 break;
-
-
+           /* case AntStates.WAITING:
+                if(SugarManager.instance.sugarPosition.Count >0)
+                {
+                    target = SugarManager.instance.GetFirstSugar();
+                    antCurrentState = AntStates.TO_SUGAR;
+                }
+                break;*/
         }
+        stateText.text = antCurrentState.ToString();
     }
 
 
