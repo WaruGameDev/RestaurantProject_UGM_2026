@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 
 public class TableManager : MonoBehaviour
 {
     public List<Table> tables;
     public static TableManager instance;
+    public Transform door;
 
     void Awake()
     {

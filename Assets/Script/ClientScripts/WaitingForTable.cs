@@ -18,7 +18,8 @@ public class WaitingForTable : IState
         if (entity.ArriveToDestination())
         {
             target.SetOccupied(true);
-            // entity.ChangeState(new SittingAtTable(target));
+            //entity.ChangeState(new SittingAtTable(new Food(), 2f));
+            entity.ChangeState(new SittingAtTable());
         }
     }
 
