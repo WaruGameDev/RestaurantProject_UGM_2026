@@ -9,5 +9,7 @@ public class FollowTransform : MonoBehaviour
     void Update()
     {
         agent.SetDestination(target.position);
+
+        
     }
 }
