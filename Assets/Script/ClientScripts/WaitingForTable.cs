@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WaitingForTable : IState
 {
-    Table target;
+    TableRestorant target;
     public void Enter(EntityRestorant entity)
     {
         TryAssignTable(entity);
@@ -17,7 +17,7 @@ public class WaitingForTable : IState
 
         if (entity.ArriveToDestination())
         {
-            target.SetOccupied(true);
+            
             //entity.ChangeState(new SittingAtTable(new Food(), 2f));
             entity.ChangeState(new SittingAtTable());
         }
@@ -28,6 +28,13 @@ public class WaitingForTable : IState
     void TryAssignTable(EntityRestorant entity)
     {
         target = TableManager.instance.GetNearestTable(entity.transform.position);
-        if (target != null) entity.meshAgent.SetDestination(target.transform.position);
+        if (target != null) 
+        {
+            target.table.SetOccupied(true);
+            target.client = (Client)entity;
+            target.client.currentTable = target.table;
+            entity.meshAgent.SetDestination(target.table.transform.position);
+
+        }
     }
 }
