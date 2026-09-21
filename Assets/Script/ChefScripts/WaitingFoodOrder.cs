@@ -15,7 +15,8 @@ public class WaitingFoodOrder : IState
 
     public void InState(EntityRestorant entity)
     {
-        if(chef.currentOrder.currentOrder == "")
+        if(chef == null) return;
+        if(chef.currentOrder.currentOrder == "" )
         {
             if(KitchenManager.instance.CheckHaveOrder())
             {
