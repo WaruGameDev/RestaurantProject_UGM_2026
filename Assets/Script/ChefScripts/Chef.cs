@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Chef : EntityRestorant
 {
-    public string currentOrder;
+    public ClientOrder currentOrder;
 
     void Start()
     {

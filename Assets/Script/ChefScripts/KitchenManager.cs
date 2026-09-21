@@ -1,13 +1,21 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+[Serializable]
+public class ClientOrder
+{
+    public Client currentClient;
+    public string currentOrder;
+}
 
 public class KitchenManager : MonoBehaviour
-{
-    public List<string> order;
+{    
     public Transform cookingPosition;
     public Transform deliveryPosition;
     public Transform restPostion;
     public static KitchenManager instance;
+    public List<ClientOrder> clientOrders;
+  
 
     void Awake()
     {
@@ -15,13 +23,10 @@ public class KitchenManager : MonoBehaviour
     }
     public bool CheckHaveOrder()
     {
-        return order.Count>0;
-    }
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            order.Add("pizza");
-        }
+        return clientOrders.Count>0;
+    }    
+    public void AddFoodOrder(ClientOrder clientOrder)
+    {       
+        clientOrders.Add(clientOrder);
     }
 }

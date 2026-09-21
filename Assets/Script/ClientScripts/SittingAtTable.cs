@@ -33,7 +33,7 @@ public class SittingAtTable : IState
                 //change To Pedir
                 Debug.Log("va a pedir");
                 //por temas de que nos falta el mesero, comemos directamente.
-                entity.ChangeState(new Eating());
+                entity.ChangeState(new WaitingForOrder());
             }           
         }
     }

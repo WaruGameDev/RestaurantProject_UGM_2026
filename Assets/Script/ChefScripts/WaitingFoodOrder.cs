@@ -15,11 +15,11 @@ public class WaitingFoodOrder : IState
 
     public void InState(EntityRestorant entity)
     {
-        if(chef.currentOrder == "")
+        if(chef.currentOrder.currentOrder == "")
         {
             if(KitchenManager.instance.CheckHaveOrder())
             {
-                chef.currentOrder = KitchenManager.instance.order[0];     
+                chef.currentOrder = KitchenManager.instance.clientOrders[0];     
                 entity.meshAgent.SetDestination(KitchenManager.instance.cookingPosition.position);         
             }
             return;
