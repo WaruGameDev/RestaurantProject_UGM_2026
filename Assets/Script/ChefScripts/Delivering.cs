@@ -1,16 +1,29 @@
 using UnityEngine;
 
-public class Delivering : MonoBehaviour
+public class Delivering : IState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Enter(EntityRestorant entity)
+    {
+        Debug.Log("Entregado");
+        entity.meshAgent.SetDestination(KitchenManager.instance.deliveryPosition.position);   
+        
+    }
+
+    public void Exit(EntityRestorant entity)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InState(EntityRestorant entity)
     {
-        
+        if(entity.ArriveToDestination())
+        {
+            Chef chef = entity as Chef;
+            KitchenManager.instance.AddFoodOrderReady(chef.currentOrder);
+            chef.currentOrder = null;
+            chef.ChangeState(new WaitingFoodOrder());
+        }
     }
+
+    
 }

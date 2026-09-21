@@ -19,7 +19,8 @@ public class WaitingFoodOrder : IState
         {
             if(KitchenManager.instance.CheckHaveOrder())
             {
-                chef.currentOrder = KitchenManager.instance.clientOrders[0];     
+                chef.currentOrder = KitchenManager.instance.clientOrders[0];
+                KitchenManager.instance.clientOrders.RemoveAt(0);     
                 entity.meshAgent.SetDestination(KitchenManager.instance.cookingPosition.position);         
             }
             return;

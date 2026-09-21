@@ -15,6 +15,7 @@ public class KitchenManager : MonoBehaviour
     public Transform restPostion;
     public static KitchenManager instance;
     public List<ClientOrder> clientOrders;
+    public List<ClientOrder> readyClientOrders;
   
 
     void Awake()
@@ -28,5 +29,20 @@ public class KitchenManager : MonoBehaviour
     public void AddFoodOrder(ClientOrder clientOrder)
     {       
         clientOrders.Add(clientOrder);
+    }
+    public void AddFoodOrderReady(ClientOrder clientOrder)
+    {
+        readyClientOrders.Add(clientOrder);        
+    }
+    public ClientOrder LookForClientOrder(Client client)
+    {
+        foreach(ClientOrder c in readyClientOrders)
+        {
+            if(c.currentClient == client)
+            {
+                return c;
+            }
+        }
+        return null;
     }
 }

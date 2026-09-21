@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class WaitingForOrder : IState
 {
+    Client client;
     public void Enter(EntityRestorant entity)
     {
-        Client client = entity as Client;
+        client = entity as Client;
         KitchenManager.instance.AddFoodOrder(client.clientOrder);
     }
 
@@ -15,7 +16,10 @@ public class WaitingForOrder : IState
 
     public void InState(EntityRestorant entity)
     {
-        //ir a eating 
+        if(KitchenManager.instance.LookForClientOrder(client)== null) return;      
+        //quizas mantener el plato en el jugador o en algun lugar para guardar el precio
+        KitchenManager.instance.readyClientOrders.Remove(KitchenManager.instance.LookForClientOrder(client));
+        entity.ChangeState(new Eating());
     }
 }
 
