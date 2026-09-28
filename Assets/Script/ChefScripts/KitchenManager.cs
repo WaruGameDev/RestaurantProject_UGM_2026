@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+public class OrderScriptable : ScriptableObject
+{
+    public string nameOrder;
+}
+
+
 [Serializable]
 public class ClientOrder
 {
     public Client currentClient;
-    public string currentOrder;
+    public OrderScriptable currentOrder;
 }
 
 public class KitchenManager : MonoBehaviour
