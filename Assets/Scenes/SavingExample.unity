@@ -352,6 +352,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7874db8544010438c2d237e9104469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataDummy
+  gameData:
+    money: 1010
+    clients: 200
+    level: 20
+    namePlayer: Joaquin
   moneyTemp: 30
   clientTemp: 9
   menuTemp:
