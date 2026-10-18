@@ -23,8 +23,8 @@ public class Eating : IState
             {
                 //change To Pedir
                 Debug.Log("termino de comer");
-                //por temas de que nos falta el mesero, hacemos perro muerto.
-                entity.ChangeState(new Leaving());
+                //antes de irse, paga lo que comió
+                entity.ChangeState(new Paying());
             }           
         }
     }

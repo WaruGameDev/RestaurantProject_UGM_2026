@@ -19,6 +19,10 @@ public class Leaving : IState
 
     public void InState(EntityRestorant entity)
     {
-       
+        //cuando llega a la puerta, el cliente sale del restaurante
+        if(entity.ArriveToDestination())
+        {
+            Object.Destroy(entity.gameObject);
+        }
     }
 }
