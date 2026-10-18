@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class Cooking : IState
 {
-    public float timerToCook = 3;
     public float currentTimeToCook =0;
     public void Enter(EntityRestorant entity)
     {
-        // timer de tiempo de cocina
-        Debug.Log("cooking");
-        currentTimeToCook = timerToCook;
+        // cada ítem del menú tiene su propio tiempo de preparación
+        Chef chef = entity as Chef;
+        Debug.Log("cooking " + chef.currentOrder.food.itemName);
+        currentTimeToCook = chef.currentOrder.food.prepTime;
     }
 
     public void Exit(EntityRestorant entity)
@@ -18,13 +18,11 @@ public class Cooking : IState
 
     public void InState(EntityRestorant entity)
     {
-        if(currentTimeToCook >0)
+        // si el ítem tiene prepTime 0, se entrega en el primer frame
+        currentTimeToCook-=1*Time.deltaTime;
+        if(currentTimeToCook<= 0)
         {
-            currentTimeToCook-=1*Time.deltaTime;       
-            if(currentTimeToCook<= 0)
-            {
-                entity.ChangeState(new Delivering());
-            }
+            entity.ChangeState(new Delivering());
         }
     }
 }

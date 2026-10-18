@@ -2,17 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OrderScriptable : ScriptableObject
-{
-    public string nameOrder;
-}
-
-
 [Serializable]
 public class ClientOrder
 {
     public Client currentClient;
-    public OrderScriptable currentOrder;
+    // el ítem del menú que pidió el cliente (DishData o DrinkData)
+    public MenuItemData food;
 }
 
 public class KitchenManager : MonoBehaviour
@@ -21,6 +16,8 @@ public class KitchenManager : MonoBehaviour
     public Transform deliveryPosition;
     public Transform restPostion;
     public static KitchenManager instance;
+    // ítems que los clientes pueden pedir, se asignan en el Inspector
+    public List<MenuItemData> menu;
     public List<ClientOrder> clientOrders;
     public List<ClientOrder> readyClientOrders;
   

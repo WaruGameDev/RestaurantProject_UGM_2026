@@ -6,6 +6,8 @@ public class WaitingForOrder : IState
     public void Enter(EntityRestorant entity)
     {
         client = entity as Client;
+        client.ChooseOrder();
+        Debug.Log("pidió " + client.clientOrder.food.itemName);
         KitchenManager.instance.AddFoodOrder(client.clientOrder);
     }
 
@@ -17,7 +19,7 @@ public class WaitingForOrder : IState
     public void InState(EntityRestorant entity)
     {
         if(KitchenManager.instance.LookForClientOrder(client)== null) return;      
-        //quizas mantener el plato en el jugador o en algun lugar para guardar el precio
+        // aquí interviene el Mesero
         KitchenManager.instance.readyClientOrders.Remove(KitchenManager.instance.LookForClientOrder(client));
         entity.ChangeState(new Eating());
     }
