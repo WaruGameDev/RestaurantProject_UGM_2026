@@ -19,12 +19,12 @@ public class DataDummy : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            DataManager.clients = clientTemp;
-            DataManager.money = moneyTemp;
+            DataManager.AddStat("clientes", clientTemp);
+            DataManager.AddStat("dinero", moneyTemp);
             DataManager.menu.Clear();
             DataManager.menu.AddRange(menuTemp);
 
-            Debug.Log(DataManager.clients + " " + DataManager.money);
+            Debug.Log(DataManager.GetStat("clientes") + " " + DataManager.GetStat("dinero"));
         }
         if (Input.GetKeyDown(KeyCode.S))
             DataManager.SaveGame(gameData, "slot1");

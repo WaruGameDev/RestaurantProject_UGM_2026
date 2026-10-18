@@ -25,8 +25,8 @@ public class Paying : IState
             {
                 // aquí interviene el Mesero
                 int price = client.clientOrder.food.GetPrice();
-                DataManager.money += price;
-                DataManager.clients += 1;
+                DataManager.AddStat("dinero", price);
+                DataManager.AddStat("clientes", 1);
                 Debug.Log("pagó $" + price);
                 entity.ChangeState(new Leaving());
             }           
