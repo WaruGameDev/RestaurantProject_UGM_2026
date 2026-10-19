@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 731484834}
   - component: {fileID: 731484833}
   - component: {fileID: 731484835}
+  - component: {fileID: 731484836}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -246,6 +247,18 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &731484836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731484832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f0465cfc76a0e438e7798ecd524678, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExampleFuction
 --- !u!1 &1163661680
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,10 +366,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataDummy
   gameData:
-    money: 1010
-    clients: 200
-    level: 20
     namePlayer: Joaquin
+    keys: []
+    values: 
   moneyTemp: 30
   clientTemp: 9
   menuTemp:

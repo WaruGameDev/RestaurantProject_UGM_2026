@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.Cinemachine.CinemachineTriggerAction.ActionSettings;
 
 [Serializable]
 public class ClientOrder
@@ -20,6 +22,9 @@ public class KitchenManager : MonoBehaviour
     public List<MenuItemData> menu;
     public List<ClientOrder> clientOrders;
     public List<ClientOrder> readyClientOrders;
+
+    [Header("Decision helper")]
+    public float fastDishTime = 4;
   
 
     void Awake()
@@ -49,4 +54,38 @@ public class KitchenManager : MonoBehaviour
         }
         return null;
     }
+
+    public bool HasPendingDrink()
+    => clientOrders.Exists(o => o.food is DrinkData);
+
+    public bool HasFastDish()
+        => clientOrders.Exists(o => o.food.prepTime <= fastDishTime);
+
+    public ClientOrder TakeFirstDrink()
+    {
+        ClientOrder order = clientOrders.Find(o => o.food is DrinkData);
+        clientOrders.Remove(order);
+        return order;
+    }
+
+    public ClientOrder TakeFirstOrder()
+    {
+        ClientOrder order = clientOrders[0];
+        clientOrders.RemoveAt(0);
+        return order;
+    }
+    public ClientOrder TakeFastestOrder()
+    {
+        ClientOrder fastest = clientOrders[0];
+        foreach (ClientOrder o in clientOrders)
+        {
+            if (o.food.prepTime < fastest.food.prepTime)
+                fastest = o;
+        }
+        clientOrders.Remove(fastest);
+        return fastest;
+    }
+
+
+
 }
